@@ -1,0 +1,232 @@
+-- Hotel Package Tracking System Database 
+
+
+-- Building
+drop table building cascade constraints;
+--drop table in case your db already has building table.
+CREATE TABLE building (
+    buildingID char(3) not null,
+    buildingName varchar2(30) not null,
+    constraint buildingPK primary key (buildingID)
+);
+
+
+-- Room
+drop table room cascade constraints;
+--drop table in case your db already has room table.
+CREATE TABLE room (
+    buildingID char(3) not null,
+    roomID char(4) not null,
+    roomNumber number(3) not null,
+    area number(4) not null,
+    beds number(2) not null,
+    maxOccupancy number(2) not null,
+    floor number(2) not null,
+    constraint roomPK primary key (buildingID, roomID),
+    constraint roomFKbuilding foreign key (buildingID) references building(buildingID)
+);
+
+
+-- Elevator
+drop table elevator cascade constraints;
+--drop table in case your db already has elevator table.
+CREATE TABLE elevator (
+    buildingID char(3) not null,
+    elevatorID varchar2(3) not null,
+    weightCapacity number(8, 2) not null,
+    maxRobots number(2) not null,
+    sizeType char(1) check (sizeType in ('S','M', 'L' )),
+    totalWeight number(8, 2) not null,
+    constraint elevatorPK primary key (buildingID, elevatorID),
+    constraint elevatorFKbuilding foreign key (buildingID) references building(buildingID)
+);
+
+
+-- Charging Station
+drop table chargingStation cascade constraints;
+--drop table in case your db already has chargingStation table.
+CREATE TABLE chargingStation (
+    buildingID char(3) not null,
+    stationID varchar2(3) not null,
+    powerRating number(8, 2) not null,
+    operationalStatus char(1) check (operationalStatus in ('O', 'R')),
+    constraint chargingStationPK primary key (buildingID, stationId),
+    constraint chargingStationFKbuilding foreign key (buildingID) references building(buildingID)
+);
+
+
+-- User
+drop table users cascade constraints;
+--drop table in case your db already has users table.
+CREATE TABLE users (
+    userID varchar2(10) not null,
+    firstName varchar2(75) not null,
+    lastName varchar2(75) not null,
+    email varchar2(40) not null,
+    phone char(12) not null,
+    street varchar2(40) not null,
+    city varchar2(20) not null,
+    state char(2) not null,
+    country varchar2(12) not null,
+    zip char(10) not null,
+    creationTime date not null,
+    lastLoggedIn date not null,
+    role char(5) check (role in ('Admin', 'Staff', 'Guest')),
+    constraint userPK primary key (userID)
+);
+
+
+-- Guest
+drop table guests cascade constraints;
+--drop table in case your db already has guests table.
+CREATE TABLE guests (
+    userID varchar2(10) not null,
+    guestID varchar2(10) not null,
+    checkinTimestamp date null,
+    checkoutTimestamp date null,
+    buildingID char(3) null,
+    roomID char(4) null,
+    constraint guestPK primary key (userID, guestID),
+    constraint guestFKuser foreign key (userID) references users(userID) ON DELETE CASCADE,
+    constraint guestFKroom foreign key (buildingID, roomID) references room(buildingID, roomID)
+);
+
+
+-- EmergencyContact
+drop table emergencyContact cascade constraints;
+--drop table in case your db already has emergencyContact table.
+CREATE TABLE emergencyContact (
+    userID varchar2(10) not null,
+    guestID varchar2(10) not null,
+    contactID varchar2(12) not null,
+    firstName varchar2(75) not null,
+    lastName varchar2(75) not null,
+    email varchar2(40) null,
+    phone char(12) not null,
+    constraint emergencycontactPK primary key (userID, guestID, contactID),
+    constraint emergencycontactFKguest foreign key (userID, guestID) references guests(userID, guestID) ON DELETE CASCADE
+);
+
+
+-- Staff
+drop table staffs cascade constraints;
+--drop table in case your db already has staffs table.
+CREATE TABLE staffs (
+    userID varchar2(10) not null,
+    staffID varchar2(10) not null,
+    shift varchar2(20) null,
+    constraint staffPK primary key (userID, staffID),
+    constraint staffFKuser foreign key (userID) references users(userID) ON DELETE CASCADE
+);
+
+
+
+-- Supplier
+drop table supplier cascade constraints;
+--drop table in case your db already has supplier table.
+CREATE TABLE supplier (
+    supplierID varchar2(8) not null,
+    name varchar2(75) not null,
+    email varchar2(40) null,
+    phone char(12) not null,
+    street varchar2(40) null,
+    city varchar2(20) null,
+    state char(2) null,
+    country varchar2(12) null,
+    zip char(10) null,
+    constraint supplierPK primary key (supplierID)
+);
+
+
+-- Robot
+drop table robots cascade constraints;
+--drop table in case your db already has robots table.
+CREATE TABLE robots (
+    robotID varchar2(5) not null,
+    rModel varchar2(15) not null,
+    manufacturer varchar2(20) not null,
+    weight number(12, 2) not null,
+    weightCapacity number(12, 2) not null,
+    volumeType char(1) check (volumeType in ('S', 'M', 'L')),
+    batteryStatus number(3) not null,
+    buildingBuildingID char(3) not null,
+    floorNum number(2)  null,
+    elevatorBuildingID char(3) null,
+    elevatorID varchar2(3) null,
+    stationBuildingID char(3) null,
+    stationID varchar2(3) null,
+    constraint robotsPK primary key (robotID),
+    constraint robotsFKelevator foreign key (elevatorBuildingID, elevatorID) references elevator(buildingID, elevatorID),
+    constraint robotsFKchargingStation foreign key (stationBuildingID, stationID) references chargingStation(buildingID, stationID),
+    constraint robotsFKbuilding foreign key (buildingBuildingID) references building(buildingID)
+);
+
+
+-- Package
+drop table package cascade constraints;
+--drop table in case your db already has package table.
+CREATE TABLE package (
+    packageID varchar2(13) not null,
+    type varchar2(15) not null,
+    weight number(12, 2) not null,
+    volumeType char(1) check (volumeType in ('S', 'M', 'L')),
+    isFragile char(1) check ( isFragile in ('Y', 'N')),
+    guestUserID varchar2(10) not null,
+    guestID varchar2(10) not null,
+    staffUserID varchar2(10) not null,
+    staffID varchar2(10) not null,
+    supplierID varchar2(8) not null,
+    robotID varchar2(5) null,
+    constraint packagePK primary key (packageID),
+    constraint packageFKguest foreign key (guestUserID, guestID) references guests(userID, guestID) ON DELETE CASCADE,
+    constraint packageFKstaff foreign key (staffUserID, staffID) references staffs(userID, staffID),
+    constraint packageFKsupplier foreign key (supplierID) references supplier(supplierID),
+    constraint packageFKrobot foreign key (robotID) references robots(robotID)
+);
+
+-- Delivery
+drop table delivery cascade constraints;
+--drop table in case your db already has delivery table.
+CREATE TABLE delivery (
+    deliveryID varchar2(13) not null,
+    type varchar2(10) check (type in ('Staff', 'Robot')),
+    status varchar2(20) check (status in ('Delivered', 'In progress', 'Not delivered')),
+    currentLocation varchar2(20) not null,
+    arrivalTime date not null,
+    estimatedDeliverytime date not null,
+    deliveredTime date null,
+    guestFeedback varchar2(50) null,
+    guestRating number(1) null,
+    packageID varchar2(13) not null,
+    constraint deliveryPK primary key (deliveryID),
+    constraint deliveryFKpackage foreign key (packageID) references package(packageID) ON DELETE CASCADE
+);
+
+
+-- Notification
+drop table notification cascade constraints;
+--drop table in case your db already has notification table.
+CREATE TABLE notification (
+    notificationID varchar2(15) not null,
+    creationTime date not null,
+    type varchar2(10) not null check (type in ('alert', 'status')),
+    content varchar2(50) not null,
+    status varchar2(20) not null,
+    deliveryID varchar2(12) not null,
+    constraint notificationPK primary key (notificationID),
+    constraint notificationFKdelivery foreign key (deliveryID) references delivery(deliveryID) ON DELETE CASCADE
+);
+
+
+-- UserNotification
+drop table usernotification cascade constraints;
+--drop table in case your db already has usernotification table.
+CREATE TABLE usernotification (
+    userID varchar2(10) not null,
+    notificationID varchar2(15) not null,
+    constraint usernotificationPK primary key (userID, notificationID),
+    constraint usernotificationFKuser foreign key (userID) references users(userID) ON DELETE CASCADE,
+    constraint usernotificationFKnotification foreign key (notificationID) references notification(notificationID)
+);
+
+COMMIT;

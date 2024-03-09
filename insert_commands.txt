@@ -1,0 +1,280 @@
+-- Building
+INSERT INTO building VALUES ('B01', 'Main Building');
+INSERT INTO building VALUES ('B02', 'Annex Building');
+INSERT INTO building VALUES ('B03', 'East Wing');
+INSERT INTO building VALUES ('B04', 'West Wing');
+
+-- Room
+-- Building 1
+INSERT INTO room VALUES ('B01', 'R101', 101, 200, 3, 2, 1);
+INSERT INTO room VALUES ('B01', 'R201', 201, 200, 4, 5, 2);
+INSERT INTO room VALUES ('B01', 'R202', 202, 100, 2, 4, 2);
+INSERT INTO room VALUES ('B01', 'R203', 203, 200, 2, 1, 2);
+INSERT INTO room VALUES ('B01', 'R301', 301, 150, 1, 2, 3);
+INSERT INTO room VALUES ('B01', 'R302', 302, 200, 1, 1, 3);
+INSERT INTO room VALUES ('B01', 'R401', 401, 150, 3, 5, 4);
+INSERT INTO room VALUES ('B01', 'R402', 402, 200, 4, 4, 4);
+
+-- Building 2
+INSERT INTO room VALUES ('B02', 'R101', 101, 150, 4, 6, 1);
+INSERT INTO room VALUES ('B02', 'R201', 201, 300, 3, 3, 2);
+INSERT INTO room VALUES ('B02', 'R401', 401, 150, 2, 1, 4);
+INSERT INTO room VALUES ('B02', 'R402', 402, 300, 1, 1, 4);
+
+-- Building 3
+INSERT INTO room VALUES ('B03', 'R101', 101, 100, 1, 3, 1);
+INSERT INTO room VALUES ('B03', 'R102', 102, 100, 2, 2, 1);
+INSERT INTO room VALUES ('B03', 'R103', 103, 100, 1, 1, 1);
+INSERT INTO room VALUES ('B03', 'R301', 301, 200, 1, 1, 3);
+INSERT INTO room VALUES ('B03', 'R302', 302, 100, 1, 2, 3);
+INSERT INTO room VALUES ('B03', 'R303', 303, 200, 1, 2, 3);
+INSERT INTO room VALUES ('B03', 'R401', 401, 150, 1, 1, 4);
+INSERT INTO room VALUES ('B03', 'R501', 501, 200, 3, 4, 5);
+INSERT INTO room VALUES ('B03', 'R502', 502, 200, 2, 1, 5);
+INSERT INTO room VALUES ('B03', 'R503', 503, 200, 1, 1, 5);
+INSERT INTO room VALUES ('B03', 'R701', 701, 200, 3, 4, 7);
+INSERT INTO room VALUES ('B03', 'R702', 702, 200, 3, 2, 7);
+INSERT INTO room VALUES ('B03', 'R801', 801, 150, 3, 3, 8);
+
+-- Building 4
+INSERT INTO room VALUES ('B04', 'R101', 101, 300, 3, 5, 1);
+INSERT INTO room VALUES ('B04', 'R102', 102, 200, 4, 4, 1);
+INSERT INTO room VALUES ('B04', 'R103', 103, 200, 2, 3, 1);
+INSERT INTO room VALUES ('B04', 'R201', 201, 300, 2, 1, 2);
+INSERT INTO room VALUES ('B04', 'R401', 401, 200, 2, 4, 4);
+INSERT INTO room VALUES ('B04', 'R402', 402, 100, 2, 4, 4);
+INSERT INTO room VALUES ('B04', 'R403', 403, 300, 1, 2, 4);
+INSERT INTO room VALUES ('B04', 'R501', 501, 150, 2, 1, 5);
+INSERT INTO room VALUES ('B04', 'R502', 502, 300, 1, 2, 5);
+
+-- Elevator
+-- Building 1
+INSERT INTO elevator VALUES ('B01', 'E01', 300, 4, 'S', 100);
+INSERT INTO elevator VALUES ('B01', 'E02', 950, 8, 'M', 200);
+INSERT INTO elevator VALUES ('B01', 'E03', 1550, 12, 'L', 300);
+INSERT INTO elevator VALUES ('B01', 'E04', 1000, 10, 'L', 150);
+
+-- Building 2
+INSERT INTO elevator VALUES ('B02', 'E01', 350, 4, 'S', 0);
+INSERT INTO elevator VALUES ('B02', 'E02', 850, 8, 'M', 100);
+INSERT INTO elevator VALUES ('B02', 'E03', 1250, 11, 'L', 50);
+INSERT INTO elevator VALUES ('B02', 'E04', 1300, 11, 'L', 120);
+
+-- Building 3
+INSERT INTO elevator VALUES ('B03', 'E01', 300, 3, 'S', 0);
+INSERT INTO elevator VALUES ('B03', 'E02', 750, 8, 'M', 400);
+INSERT INTO elevator VALUES ('B03', 'E03', 1150, 12, 'L', 300);
+INSERT INTO elevator VALUES ('B03', 'E04', 1200, 13, 'L', 250);
+
+-- Building 4
+INSERT INTO elevator VALUES ('B04', 'E01', 300, 3, 'S', 150);
+INSERT INTO elevator VALUES ('B04', 'E02', 950, 8, 'M', 100);
+INSERT INTO elevator VALUES ('B04', 'E03', 1450, 13, 'L', 150);
+INSERT INTO elevator VALUES ('B04', 'E04', 1100, 12, 'L', 230);
+
+-- Charging Station
+-- Building 1
+INSERT INTO chargingStation VALUES ('B01', 'S01', 100, 'O');
+INSERT INTO chargingStation VALUES ('B01', 'S02', 150, 'R');
+INSERT INTO chargingStation VALUES ('B01', 'S03', 200, 'O');
+INSERT INTO chargingStation VALUES ('B01', 'S04', 250, 'O');
+
+-- Building 2
+INSERT INTO chargingStation VALUES ('B02', 'S01', 100, 'O');
+INSERT INTO chargingStation VALUES ('B02', 'S02', 150, 'O');
+INSERT INTO chargingStation VALUES ('B02', 'S03', 200, 'O');
+INSERT INTO chargingStation VALUES ('B02', 'S04', 250, 'O');
+
+-- Building 3
+INSERT INTO chargingStation VALUES ('B03', 'S01', 100, 'O');
+INSERT INTO chargingStation VALUES ('B03', 'S02', 150, 'R');
+INSERT INTO chargingStation VALUES ('B03', 'S03', 200, 'O');
+INSERT INTO chargingStation VALUES ('B03', 'S04', 250, 'O');
+
+-- Building 4
+INSERT INTO chargingStation VALUES ('B04', 'S01', 100, 'O');
+INSERT INTO chargingStation VALUES ('B04', 'S02', 150, 'O');
+INSERT INTO chargingStation VALUES ('B04', 'S03', 200, 'O');
+INSERT INTO chargingStation VALUES ('B04', 'S04', 250, 'O');
+
+-- Users
+INSERT INTO users VALUES ('U001', 'Jane', 'Smith', 'jane.smith@example.com', '019-555-5678', '456 Oak St', 'Townsville', 'NY', 'USA', '67890', TO_DATE('2022-12-05', 'YYYY-MM-DD'), TO_DATE('2022-12-24', 'YYYY-MM-DD'), 'Guest');
+INSERT INTO users VALUES ('U002', 'John', 'Doe', 'john.doe@example.com', '123-555-1234', '123 Main St', 'Cityville', 'CA', 'USA', '12345', TO_DATE('2023-01-08', 'YYYY-MM-DD'), TO_DATE('2023-01-22', 'YYYY-MM-DD'), 'Guest');
+INSERT INTO users VALUES ('U003', 'Emily', 'Johnson', 'emily.johnson@example.com', '231-555-1234', '456 Oak St', 'Cityville', 'CA', 'USA', '98765', TO_DATE('2012-05-15', 'YYYY-MM-DD'), TO_DATE('2012-05-15', 'YYYY-MM-DD'), 'Guest');
+INSERT INTO users VALUES ('U004', 'Sophia', 'Williams', 'sophia.williams@example.com', '555-987-6543', '789 Maple Ave', 'Suburbia', 'TX', 'USA', '54321', TO_DATE('2023-11-28', 'YYYY-MM-DD'), TO_DATE('2023-11-28', 'YYYY-MM-DD'), 'Guest');
+INSERT INTO users VALUES ('U009', 'Bob', 'Johnson', 'bob.johnson@example.com', '903-555-9876', '789 Pine St', 'Villagetown', 'TX', 'USA', '54321', TO_DATE('2023-09-20', 'YYYY-MM-DD'), TO_DATE('2023-11-25', 'YYYY-MM-DD'), 'Guest');
+INSERT INTO users VALUES ('U005', 'George', 'Clark', 'george.clark@example.com', '015-555-1111', '234 Redwood St', 'Hometown', 'WA', 'USA', '87654', TO_DATE('2022-10-19', 'YYYY-MM-DD'), TO_DATE('2023-11-28', 'YYYY-MM-DD'), 'Staff');
+INSERT INTO users VALUES ('U006', 'Fiona', 'Roberts', 'fiona.roberts@example.com', '340-555-4444', '876 Elm St', 'Ruraltown', 'KS', 'USA', '34567', TO_DATE('2021-06-25', 'YYYY-MM-DD'), TO_DATE('2023-11-28', 'YYYY-MM-DD'), 'Staff');
+INSERT INTO users VALUES ('U007', 'David', 'Hill', 'david.hill@example.com', '591-555-7777', '567 Pine St', 'Outskirts', 'NE', 'USA', '76543', TO_DATE('2020-04-09', 'YYYY-MM-DD'), TO_DATE('2023-11-15', 'YYYY-MM-DD'), 'Admin');
+INSERT INTO users VALUES ('U008', 'Grace', 'Miller', 'grace.miller@example.com', '945-555-9999', '123 Cedar St', 'Countryside', 'GA', 'USA', '98765', TO_DATE('2019-01-10', 'YYYY-MM-DD'), TO_DATE('2023-11-20', 'YYYY-MM-DD'), 'Admin');
+
+-- Guests
+INSERT INTO guests VALUES ('U001', 'G001', TO_DATE('2022-12-10 14:00:00', 'YYYY-MM-DD HH24:MI:SS'), TO_DATE('2022-12-16 11:00:00', 'YYYY-MM-DD HH24:MI:SS'), 'B01', 'R201');
+INSERT INTO guests VALUES ('U002', 'G002', TO_DATE('2023-01-15 12:30:00', 'YYYY-MM-DD HH24:MI:SS'), TO_DATE('2023-01-20 12:00:00', 'YYYY-MM-DD HH24:MI:SS'), 'B02', 'R401');
+INSERT INTO guests VALUES ('U003', 'G003', TO_DATE('2012-05-09 09:00:00', 'YYYY-MM-DD HH24:MI:SS'), TO_DATE('2012-05-14 14:30:00', 'YYYY-MM-DD HH24:MI:SS'), 'B03', 'R702');
+INSERT INTO guests VALUES ('U004', 'G004', null, null, null, null);
+INSERT INTO guests VALUES ('U009', 'G005', TO_DATE('2023-11-10 09:00:00', 'YYYY-MM-DD HH24:MI:SS'), TO_DATE('2023-11-30 19:18:00', 'YYYY-MM-DD HH24:MI:SS'), 'B04', 'R502');
+
+-- EmergencyContact
+INSERT INTO emergencyContact VALUES ('U001', 'G001', 'C001', 'Sarah', 'Johnson', 'sarah.johnson@example.com', '123-555-2222');
+INSERT INTO emergencyContact VALUES ('U001', 'G001', 'C002', 'Michael', 'Smith', 'michael.smith@example.com', '123-555-3333');
+INSERT INTO emergencyContact VALUES ('U002', 'G002', 'C003', 'Olivia', 'Brown', 'olivia.brown@example.com', '123-555-4444');
+INSERT INTO emergencyContact VALUES ('U003', 'G003', 'C004', 'Daniel', 'Williams', 'daniel.williams@example.com', '123-555-5555');
+INSERT INTO emergencyContact VALUES ('U004', 'G004', 'C005', 'Emma', 'Davis', 'emma.davis@example.com', '123-555-6666');
+INSERT INTO emergencyContact VALUES ('U004', 'G004', 'C006', 'Liam', 'Anderson', 'liam.anderson@example.com', '123-555-7777');
+INSERT INTO emergencyContact VALUES ('U009', 'G005', 'C007', 'James', 'Bond', 'james.bond@myemail.com', '903-555-8888');
+
+-- Staff
+INSERT INTO staffs VALUES ('U005', 'S001', 'morning');
+INSERT INTO staffs VALUES ('U006', 'S002', 'afternoon');
+INSERT INTO staffs VALUES ('U007', 'S003', 'afternoon');
+INSERT INTO staffs VALUES ('U008', 'S004', 'evening');
+
+-- Supplier
+INSERT INTO supplier VALUES ('SUP001', 'ABC Electronics', 'contactus@abc.com', '123-555-1111', '7936 Dunbar Ave.', 'Ellenwood', 'GA', 'USA', '30294');
+INSERT INTO supplier VALUES ('SUP002', 'XYZ Logistics', 'help@xyzlogistics.com', '123-666-7088', '456 Supply Ave', 'Supplytown', 'TX', 'USA', '73412');
+INSERT INTO supplier VALUES ('SUP003', 'Fashion Emporium', 'info@fashemporium.com', '345-790-2333', '259 Kirkland St.', 'San Lorenzo', 'CA', 'USA', '94580');
+INSERT INTO supplier VALUES ('SUP004', 'Home Essentials Co.', 'questions@homeessentials.com', '364-215-9852', '8746 8th Street', 'Port Orange', 'FL', 'USA', '32127');
+INSERT INTO supplier VALUES ('SUP005', 'Gadget Haven', 'info@gadgethaven.com', '901-241-5893', '867 Smith Ave.', 'Roy', 'UT', 'USA', '84067');
+INSERT INTO supplier VALUES ('SUP006', 'Amazing Prints Inc.', 'info@amazingprints.com', '412-809-2357', '649 Buttonwood St', 'Brainerd', 'MN', 'USA', '56401');
+INSERT INTO supplier VALUES ('SUP007', 'Food Restaurant', 'info@foodrestaurant.com', '312-360-1268', '9625 NW. Division Road', 'Winter Garden', 'FL', 'USA', '34787');
+
+-- Robot
+-- Building 1
+INSERT INTO robots VALUES ('RB001', 'Model A', 'TechRobotics', 20, 5, 'S', 90, 'B01', 3, null, null, null, null);
+INSERT INTO robots VALUES ('RB002', 'Model W', 'TechRobotics', 50, 20, 'M', 60, 'B01', 10, null, null, null, null);
+INSERT INTO robots VALUES ('RB003', 'Model X', 'TechRobotics', 100, 50, 'L', 75, 'B01', 0, null, null, null, null);
+-- Building 2
+INSERT INTO robots VALUES ('RB004', 'Model A', 'TechRobotics', 20, 5, 'S', 75, 'B02', null, 'B02', 'E01', null, null);
+INSERT INTO robots VALUES ('RB005', 'Model W', 'TechRobotics', 50, 20, 'M', 100, 'B02', 2, null, null, null, null);
+INSERT INTO robots VALUES ('RB006', 'Model X', 'TechRobotics', 100, 50, 'L', 80, 'B02', 4, null, null, null, null);
+-- Building 3
+INSERT INTO robots VALUES ('RB007', 'Model A', 'TechRobotics', 20, 5, 'S', 100, 'B03', 0, null, null, null, null);
+INSERT INTO robots VALUES ('RB008', 'Model W', 'TechRobotics', 50,20, 'M', 75, 'B03', 0, null, null, null, null);
+INSERT INTO robots VALUES ('RB009', 'Model X', 'TechRobotics', 100, 50, 'L', 90, 'B03', null, null, null, 'B03', 'S01');
+-- Building 4
+INSERT INTO robots VALUES ('RB010', 'Model A', 'TechRobotics', 20, 5, 'S', 100, 'B04', 1, null, null, null, null);
+INSERT INTO robots VALUES ('RB011', 'Model W', 'TechRobotics', 50, 20, 'M', 80, 'B04', 5, null, null, null, null);
+INSERT INTO robots VALUES ('RB012', 'Model X', 'TechRobotics', 100, 50, 'L', 20, 'B04', null, null, null, 'B04', 'S02');
+
+
+-- Package
+-- Building 1
+INSERT INTO package VALUES ('P001', 'Clothes', 0.8,  'S', 'N', 'U001', 'G001', 'U005', 'S001', 'SUP003', 'RB001');
+INSERT INTO package VALUES ('P002', 'Food',    2.25, 'S', 'N', 'U001', 'G001', 'U005', 'S001', 'SUP007', null);
+
+-- Building 2
+INSERT INTO package VALUES ('P003', 'Electronics', 20.91, 'L', 'N', 'U002', 'G002', 'U005', 'S001', 'SUP001', 'RB006');
+INSERT INTO package VALUES ('P004', 'Items',       15.45, 'M', 'Y', 'U002', 'G002', 'U005', 'S001', 'SUP004', null);
+
+-- Building 3
+INSERT INTO package VALUES ('P005', 'Items',       10.45, 'M', 'N', 'U003', 'G003', 'U006', 'S002', 'SUP004', 'RB008');
+INSERT INTO package VALUES ('P006', 'Electronics', 20.51, 'L', 'Y', 'U003', 'G003', 'U006', 'S002', 'SUP001', 'RB009');
+
+-- Building 4
+INSERT INTO package VALUES ('P007', 'Clothes', 5.8, 'S', 'N', 'U009', 'G005', 'U007', 'S003', 'SUP003', 'RB010');
+INSERT INTO package VALUES ('P008', 'Food',    1.2, 'S', 'N', 'U009', 'G005', 'U007', 'S003', 'SUP004', 'RB011');
+
+
+-- Delivery
+INSERT INTO delivery VALUES ('D001', 'Robot', 'Delivered', 'Delivered', TO_DATE('2022-12-13 15:05:00', 'YYYY-MM-DD HH24:MI:SS'), TO_DATE('2022-12-14 12:23:00', 'YYYY-MM-DD HH24:MI:SS'), TO_DATE('2022-12-13 20:06:00', 'YYYY-MM-DD HH24:MI:SS'), 'Delivery was perfect!', 5, 'P001');
+INSERT INTO delivery VALUES ('D002', 'Staff', 'Delivered', 'Delivered', TO_DATE('2022-12-11 14:30:00', 'YYYY-MM-DD HH24:MI:SS'), TO_DATE('2022-12-11 15:15:00', 'YYYY-MM-DD HH24:MI:SS'), TO_DATE('2022-12-13 3:00:00', 'YYYY-MM-DD HH24:MI:SS'), null, 3, 'P002');
+
+INSERT INTO delivery VALUES ('D003', 'Robot', 'Delivered', 'Delivered', TO_DATE('2023-01-17 18:00:00', 'YYYY-MM-DD HH24:MI:SS'), TO_DATE('2023-01-16 17:55:00', 'YYYY-MM-DD HH24:MI:SS'), TO_DATE('2023-01-17 20:30:00', 'YYYY-MM-DD HH24:MI:SS'), null, 4, 'P003');
+INSERT INTO delivery VALUES ('D004', 'Staff', 'Delivered', 'Delivered', TO_DATE('2023-01-19 10:00:00', 'YYYY-MM-DD HH24:MI:SS'), TO_DATE('2023-03-20 10:05:00', 'YYYY-MM-DD HH24:MI:SS'), TO_DATE('2023-01-19 15:00:00', 'YYYY-MM-DD HH24:MI:SS'), null, 3, 'P004');
+
+INSERT INTO delivery VALUES ('D005', 'Robot', 'Delivered', 'Delivered', TO_DATE('2012-05-10 18:00:00', 'YYYY-MM-DD HH24:MI:SS'), TO_DATE('2012-05-10 17:55:00', 'YYYY-MM-DD HH24:MI:SS'), TO_DATE('2012-05-10 20:30:00', 'YYYY-MM-DD HH24:MI:SS'), null, 5, 'P005');
+INSERT INTO delivery VALUES ('D006', 'Robot', 'Delivered', 'Delivered', TO_DATE('2012-05-14 10:00:00', 'YYYY-MM-DD HH24:MI:SS'), TO_DATE('2012-05-13 10:05:00', 'YYYY-MM-DD HH24:MI:SS'), TO_DATE('2012-05-14 10:30:00', 'YYYY-MM-DD HH24:MI:SS'), null, 3, 'P006');
+
+INSERT INTO delivery VALUES ('D007', 'Robot', 'Delivered', 'Delivered', TO_DATE('2023-11-15 18:00:00', 'YYYY-MM-DD HH24:MI:SS'), TO_DATE('2023-11-16 17:55:00', 'YYYY-MM-DD HH24:MI:SS'), TO_DATE('2023-11-15 20:30:00', 'YYYY-MM-DD HH24:MI:SS'), 'Excellent service', 4, 'P007');
+INSERT INTO delivery VALUES ('D008', 'Robot', 'In progress', 'Elevator',  TO_DATE('2023-11-29 10:00:00', 'YYYY-MM-DD HH24:MI:SS'), TO_DATE('2023-11-28 10:05:00', 'YYYY-MM-DD HH24:MI:SS'), null, null, null, 'P008');
+
+
+-- notification
+-- user 1
+INSERT INTO notification VALUES ('N001', TO_DATE('2022-12-09 08:30:00', 'YYYY-MM-DD HH24:MI:SS'), 'alert', 'Your package is awaiting confirmation', 'unread', 'D001');
+INSERT INTO notification VALUES ('N002', TO_DATE('2022-12-10 08:30:00', 'YYYY-MM-DD HH24:MI:SS'), 'alert', 'Your delivery is delayed due to weather conditions', 'unread', 'D001');
+INSERT INTO notification VALUES ('N003', TO_DATE('2022-12-10 12:15:00', 'YYYY-MM-DD HH24:MI:SS'), 'status', 'Your package is en route to the hotel', 'unread', 'D001');
+INSERT INTO notification VALUES ('N004', TO_DATE('2022-12-10 22:30:00', 'YYYY-MM-DD HH24:MI:SS'), 'status', 'Your package is in the storage room', 'unread', 'D001');
+INSERT INTO notification VALUES ('N005', TO_DATE('2022-12-14 12:10:00', 'YYYY-MM-DD HH24:MI:SS'), 'status', 'Your package has been delivered to your room', 'read', 'D001');
+
+INSERT INTO notification VALUES ('N006', TO_DATE('2022-12-10 08:30:00', 'YYYY-MM-DD HH24:MI:SS'), 'alert', 'Your delivery is delayed due to weather conditions', 'unread', 'D002');
+INSERT INTO notification VALUES ('N007', TO_DATE('2022-12-11 12:15:00', 'YYYY-MM-DD HH24:MI:SS'), 'status', 'Your package is en route to the hotel', 'read', 'D002');
+INSERT INTO notification VALUES ('N008', TO_DATE('2022-12-12 09:30:00', 'YYYY-MM-DD HH24:MI:SS'), 'status', 'Your package is in the storage room', 'unread', 'D002');
+INSERT INTO notification VALUES ('N009', TO_DATE('2022-12-19 03:05:00', 'YYYY-MM-DD HH24:MI:SS'), 'status', 'Your package has been delivered to your room', 'read', 'D002');
+
+-- user 2
+INSERT INTO notification VALUES ('N010', TO_DATE('2023-01-13 08:30:00', 'YYYY-MM-DD HH24:MI:SS'), 'alert', 'Your package is awaiting confirmation', 'unread', 'D003');
+INSERT INTO notification VALUES ('N011', TO_DATE('2023-01-15 10:30:00', 'YYYY-MM-DD HH24:MI:SS'), 'alert', 'Your delivery is delayed due to weather conditions', 'unread', 'D003');
+INSERT INTO notification VALUES ('N012', TO_DATE('2023-01-17 12:15:00', 'YYYY-MM-DD HH24:MI:SS'), 'status', 'Your package is en route to the hotel', 'red', 'D003');
+INSERT INTO notification VALUES ('N013', TO_DATE('2023-01-17 18:30:00', 'YYYY-MM-DD HH24:MI:SS'), 'status', 'Your package is in the storage room', 'unread', 'D003');
+INSERT INTO notification VALUES ('N014', TO_DATE('2023-01-17 21:10:00', 'YYYY-MM-DD HH24:MI:SS'), 'status', 'Your package has been delivered to your room', 'read', 'D003');
+
+INSERT INTO notification VALUES ('N015', TO_DATE('2023-01-18 01:15:00', 'YYYY-MM-DD HH24:MI:SS'), 'status', 'Your package is en route to the hotel', 'read', 'D004');
+INSERT INTO notification VALUES ('N016', TO_DATE('2023-01-19 12:30:00', 'YYYY-MM-DD HH24:MI:SS'), 'status', 'Your package is in the storage room', 'read', 'D004');
+INSERT INTO notification VALUES ('N017', TO_DATE('2023-01-19 15:01:10', 'YYYY-MM-DD HH24:MI:SS'), 'status', 'Your package has been delivered to your room', 'unread', 'D004');
+
+-- user 3
+INSERT INTO notification VALUES ('N018', TO_DATE('2012-05-09 01:15:00', 'YYYY-MM-DD HH24:MI:SS'), 'status', 'Your package is en route to the hotel', 'read', 'D005');
+INSERT INTO notification VALUES ('N019', TO_DATE('2012-05-10 19:30:00', 'YYYY-MM-DD HH24:MI:SS'), 'status', 'Your package is in the storage room', 'unread', 'D005');
+INSERT INTO notification VALUES ('N020', TO_DATE('2012-05-19 20:35:10', 'YYYY-MM-DD HH24:MI:SS'), 'status', 'Your package has been delivered to your room', 'read', 'D005');
+
+INSERT INTO notification VALUES ('N021', TO_DATE('2012-05-12 08:30:00', 'YYYY-MM-DD HH24:MI:SS'), 'alert', 'Your package is awaiting confirmation', 'unread', 'D006');
+INSERT INTO notification VALUES ('N022', TO_DATE('2012-05-13 08:30:00', 'YYYY-MM-DD HH24:MI:SS'), 'alert', 'Your delivery is delayed due to weather conditions', 'unread', 'D006');
+INSERT INTO notification VALUES ('N023', TO_DATE('2012-05-14 01:15:00', 'YYYY-MM-DD HH24:MI:SS'), 'status', 'Your package is en route to the hotel', 'unread', 'D006');
+INSERT INTO notification VALUES ('N024', TO_DATE('2012-05-14 08:30:00', 'YYYY-MM-DD HH24:MI:SS'), 'status', 'Your package is in the storage room', 'read', 'D006');
+INSERT INTO notification VALUES ('N025', TO_DATE('2012-05-14 10:35:10', 'YYYY-MM-DD HH24:MI:SS'), 'status', 'Your package has been delivered to your room', 'read', 'D006');
+
+-- user 9
+INSERT INTO notification VALUES ('N026', TO_DATE('2023-11-14 08:30:00', 'YYYY-MM-DD HH24:MI:SS'), 'alert', 'Your package is awaiting confirmation', 'unread', 'D007');
+INSERT INTO notification VALUES ('N027', TO_DATE('2023-11-14 10:30:00', 'YYYY-MM-DD HH24:MI:SS'), 'alert', 'Your delivery is delayed due to weather conditions', 'unread', 'D007');
+INSERT INTO notification VALUES ('N028', TO_DATE('2023-11-15 01:15:00', 'YYYY-MM-DD HH24:MI:SS'), 'status', 'Your package is en route to the hotel', 'read', 'D007');
+INSERT INTO notification VALUES ('N029', TO_DATE('2023-11-15 18:30:00', 'YYYY-MM-DD HH24:MI:SS'), 'status', 'Your package is in the storage room', 'unread', 'D007');
+INSERT INTO notification VALUES ('N030', TO_DATE('2023-11-15 20:31:10', 'YYYY-MM-DD HH24:MI:SS'), 'status', 'Your package has been delivered to your room', 'read', 'D007');
+
+INSERT INTO notification VALUES ('N031', TO_DATE('2023-11-27  10:25:00', 'YYYY-MM-DD HH24:MI:SS'), 'alert', 'Your delivery is delayed due to weather conditions', 'read', 'D008');
+INSERT INTO notification VALUES ('N032', TO_DATE('2023-11-28  01:15:00', 'YYYY-MM-DD HH24:MI:SS'), 'status', 'Your package is en route to the hotel', 'read', 'D008');
+
+
+-- UserNotification
+-- user 1
+INSERT INTO usernotification VALUES ('U001', 'N001');
+INSERT INTO usernotification VALUES ('U001', 'N002');
+INSERT INTO usernotification VALUES ('U001', 'N003');
+INSERT INTO usernotification VALUES ('U001', 'N004');
+INSERT INTO usernotification VALUES ('U001', 'N005');
+INSERT INTO usernotification VALUES ('U001', 'N006');
+INSERT INTO usernotification VALUES ('U001', 'N007');
+INSERT INTO usernotification VALUES ('U001', 'N008');
+INSERT INTO usernotification VALUES ('U001', 'N009');
+
+-- user 2
+INSERT INTO usernotification VALUES ('U002', 'N010');
+INSERT INTO usernotification VALUES ('U002', 'N011');
+INSERT INTO usernotification VALUES ('U002', 'N012');
+INSERT INTO usernotification VALUES ('U002', 'N013');
+INSERT INTO usernotification VALUES ('U002', 'N014');
+INSERT INTO usernotification VALUES ('U002', 'N015');
+INSERT INTO usernotification VALUES ('U002', 'N016');
+INSERT INTO usernotification VALUES ('U002', 'N017');
+
+-- user 3
+INSERT INTO usernotification VALUES ('U003', 'N018');
+INSERT INTO usernotification VALUES ('U003', 'N019');
+INSERT INTO usernotification VALUES ('U003', 'N020');
+INSERT INTO usernotification VALUES ('U003', 'N021');
+INSERT INTO usernotification VALUES ('U003', 'N022');
+INSERT INTO usernotification VALUES ('U003', 'N023');
+INSERT INTO usernotification VALUES ('U003', 'N024');
+INSERT INTO usernotification VALUES ('U003', 'N025');
+
+-- user 9
+INSERT INTO usernotification VALUES ('U009', 'N026');
+INSERT INTO usernotification VALUES ('U009', 'N027');
+INSERT INTO usernotification VALUES ('U009', 'N028');
+INSERT INTO usernotification VALUES ('U009', 'N029');
+INSERT INTO usernotification VALUES ('U009', 'N030');
+INSERT INTO usernotification VALUES ('U009', 'N031');
+INSERT INTO usernotification VALUES ('U009', 'N032');
+
+COMMIT;

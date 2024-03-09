@@ -1,0 +1,185 @@
+----------------------------------------------------------------------
+------------------- Queries by Estifanos Abebe -----------------------
+----------------------------------------------------------------------
+
+-- Query 1
+SELECT 
+    s.staffID as staff_id, 
+    u.firstName AS first_name,
+    u.lastName AS last_name,
+    COUNT(d.deliveryId) as num_deliveries,
+    ROUND(MIN(d.deliveredTime - d.arrivalTime)*24, 2) AS min_delivery_time_hrs,
+    ROUND(MAX(d.deliveredTime - d.arrivalTime)*24, 2) AS max_delivery_time_hrs,
+    ROUND(AVG(d.deliveredTime - d.arrivalTime)*24, 2) AS avg_delivery_time_hrs
+FROM staffs s
+LEFT JOIN users u ON s.userId = u.userID
+LEFT JOIN package p ON s.staffID = p.staffID AND s.userId = p.staffUserID
+LEFT JOIN delivery d ON p.packageID = d.packageID
+WHERE d.status = 'Delivered'
+GROUP BY s.staffID, u.firstName, u.lastName
+ORDER BY AVG(d.deliveredTime - d.arrivalTime);
+
+
+-- Query 2
+SELECT 
+    rb.robotId AS robot_id,
+    rb.rModel AS robot_model,
+    rb.weightCapacity AS weight_capacity,
+    rb.volumeType AS volume_type,
+    rb.batteryStatus AS battery_status,
+    rb.buildingBuildingID AS building_id,
+    rb.floorNum AS floor_num,
+    b.BUILDINGNAME AS building_name
+FROM robots rb, building b
+WHERE
+    rb.buildingBuildingID = b.buildingID
+    AND b.buildingName = 'West Wing'
+    AND rb.batteryStatus > 25                -- battery status constraint
+    AND rb.volumeType IN ('S', 'M', 'L')     -- volume constraint
+    AND rb.weightCapacity > 4.5              -- weight constraint
+    AND rb.stationID IS NULL                 -- robot must not be docked to charging Station
+    AND  rb.robotID NOT IN (
+        SELECT rb.robotId
+        FROM delivery d
+        JOIN package p ON d.packageID = p.packageID
+        JOIN robots rb ON rb.robotID = p.robotID
+        JOIN building b ON rb.buildingBuildingID = b.buildingID
+        WHERE
+            b.buildingName = 'West Wing'
+            AND d.type = 'Robot'
+            AND d.status = 'In progress'
+        )     -- robots that are currently in the process of delivering a package
+ORDER BY rb.floorNum ASC;    -- robot closer to the 1st floor is listed first
+
+
+-- Query 3
+SELECT
+    b.buildingID as bld_id,
+    b.buildingName AS bld_name,
+    COUNT(*) AS total_deliveries, 
+    (COUNT(CASE WHEN d.type = 'Staff' THEN 1 END) / COUNT(*)) * 100 AS prop_staff_deliveries,
+    (COUNT(CASE WHEN d.type = 'Robot' THEN 1 END) / COUNT(*)) * 100 AS prop_robot_deliveries
+FROM building b
+LEFT JOIN room r ON b.buildingID = r.buildingID
+LEFT JOIN guests g ON r.roomID = g.roomID AND r.buildingID = g.buildingID
+LEFT JOIN package p ON g.guestID = p.guestID AND p.guestUserID = g.USERID
+LEFT JOIN delivery d ON d.packageID = p.packageID
+WHERE d.status = 'Delivered'
+GROUP BY b.buildingID, b.buildingName
+ORDER BY b.buildingName, COUNT(*);
+
+
+----------------------------------------------------------------------
+------------------- Queries by Chinonso Eziefule ---------------------
+----------------------------------------------------------------------
+
+-- Query 1
+SELECT
+    g.guestID,
+    g.userID,
+    s.supplierID,
+    s.name AS supplierName,
+    COUNT(p.packageID) AS totalPackagesReceived,
+    SUM(p.weight) AS totalWeightReceived
+FROM
+    guests g
+JOIN
+    package p ON g.userID = p.guestUserID AND g.guestID = p.guestID
+JOIN
+    supplier s ON p.supplierID = s.supplierID
+GROUP BY
+    g.guestID, g.userID, s.supplierID, s.name
+ORDER BY
+    g.guestID ASC;
+
+
+-- Query 2
+SELECT p.packageid, p.type, p.weight, p.volumetype, p.isfragile, g.guestId, g.userid, r.robotid, r.rmodel, d.deliveryid, d.type, d.status, d.currentlocation, d.arrivaltime, d.estimateddeliverytime, d.deliveredtime, d.guestfeedback, d.guestrating from package p
+JOIN delivery d ON d.packageid = p.packageid
+JOIN guests g ON g.guestid = p.guestid
+JOIN users u ON u.userid = g.userid
+JOIN supplier s On s.supplierid = p.supplierid
+JOIN robots r ON r.robotID = p.robotid
+WHERE d.type = 'Robot' AND d.status = 'Delivered'
+ORDER BY d.estimateddeliverytime asc;
+
+
+-- Query 3
+SELECT u.firstName || ' ' || u.lastName AS guestName, r.buildingID, r.roomNumber,     g.checkinTimestamp, g.checkoutTimestamp, COUNT(p.packageID) AS totalPackagesReceived
+FROM users u
+JOIN guests g ON u.userID = g.userID
+JOIN room r ON g.buildingID = r.buildingID 
+    AND g.roomID = r.roomID
+LEFT JOIN package p ON g.userID = p.guestUserID 
+    AND g.guestID = p.guestID
+WHERE g.checkinTimestamp >= ADD_MONTHS(TRUNC(SYSDATE, 'MONTH'), -1)
+    AND g.checkinTimestamp < TRUNC(SYSDATE, 'MONTH')
+GROUP BY
+    u.userID, u.firstName, u.lastName, r.buildingID,
+    r.roomNumber, g.checkinTimestamp, g.checkoutTimestamp
+HAVING COUNT(p.packageID) > 0;
+
+
+----------------------------------------------------------------------
+------------------- Queries by Nana Afua Martinson -------------------
+----------------------------------------------------------------------
+
+-- Query 1
+SELECT 
+E.FIRSTNAME, E.LASTNAME, E.PHONE 
+FROM EMERGENCYCONTACT E 
+JOIN GUESTS G ON G.GUESTID = E.GUESTID 
+JOIN USERS U ON G.USERID = U.USERID 
+WHERE U.FIRSTNAME = 'John' AND U.LASTNAME ='Doe' AND G.GUESTID = 'G002';
+
+
+-- Query 2
+SELECT 
+S.STAFFID, U.FIRSTNAME, U.LASTNAME,
+COUNT(P.PACKAGEID) AS "TOTAL PACKAGES ASSIGNED", 
+AVG(D.GUESTRATING) AS "AVERAGE RATING" 
+FROM USERS U JOIN STAFFS S ON U.USERID = S.USERID 
+JOIN PACKAGE P ON P.STAFFID = S.STAFFID 
+JOIN DELIVERY D ON D.PACKAGEID = P.PACKAGEID 
+WHERE D.STATUS = 'Delivered' GROUP BY U.FIRSTNAME, U.LASTNAME, S.STAFFID 
+ORDER BY  S.STAFFID;
+
+
+-- Query 3
+SELECT S.SUPPLIERID, S.NAME, COUNT(D.DELIVERYID) AS TOTAL
+FROM SUPPLIER S JOIN PACKAGE P ON S.SUPPLIERID = P.SUPPLIERID
+JOIN DELIVERY D ON D.PACKAGEID = P.PACKAGEID
+WHERE D.STATUS = 'Delivered' AND D.DELIVEREDTIME BETWEEN TO_DATE('01-JAN-2023', 'DD-MON-YYYY') AND SYSDATE
+GROUP BY S.SUPPLIERID, S.NAME
+ORDER BY S.NAME;
+
+
+
+----------------------------------------------------------------------
+------------------- Queries by Mahir Pirmohammed  --------------------
+----------------------------------------------------------------------
+
+-- Query 1
+SELECT d.type, p.volumeType, AVG(d.guestRating) as "Average Guest Rating"
+FROM Delivery d JOIN package p ON p.packageID = d.packageID
+WHERE d.guestRating IS NOT NULL
+GROUP BY d.type, p.volumeType
+ORDER BY AVG(d.guestRating) DESC;
+
+-- Query 2
+SELECT u.firstName, u.lastName, u.phone, p.packageID, d.status, d.currentLocation, d.arrivalTime, d.estimatedDeliveryTime, d.deliveredTime 
+FROM users u 
+JOIN guests g ON u.userID = g.userID 
+JOIN package p ON g.userID = p.guestUserID AND g.guestID=p.guestID 
+JOIN delivery d ON p.packageID = d.packageID 
+WHERE u.lastName LIKE 'Sm%' 
+ORDER BY u.lastName, u.firstName, u.phone;
+
+
+-- Query 3
+SELECT u.firstName, u.lastName, u.phone, g.checkinTimestamp, g.checkoutTimestamp, r.roomNumber 
+FROM users u 
+JOIN guests g ON u.userID = g.userID 
+JOIN room r ON g.buildingID=r.buildingID AND g.roomID = r.roomID 
+WHERE g.checkinTimestamp > SYSDATE 
+ORDER BY g.checkinTimestamp ASC; 
